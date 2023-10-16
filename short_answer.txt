@@ -1,0 +1,70 @@
+Warmup
+------
+
+Q1. The display of the Queue in the debugger uses the labels `front` and `back` to mark the two ends of the queue. How are the contents labeled when the Queue contains only one element?
+A1.
+front/back
+
+Q2. For which type of inputs does the function go into an infinite loop?
+A2.
+The function goes into an infinite loop if the input type has ONLY negative number. The reason is because when there is a negative number the size of the queue (q) continuously grows as a new negative number is added into the queue.
+Therefore, when a negative number is added, it continues to go through the for loop infinitely.
+
+Q3. Show your edited code for `duplicateNegatives` that fixes the problem with the infinite loop.
+A3.
+void duplicateNegatives(Queue<int>& q) {
+    int size = q.size();
+    for (int i = 0; i < size; i++) {
+        int val = q.dequeue();
+        q.enqueue(val);
+        if (val < 0) {
+            q.enqueue(val);   // double up on negative numbers
+        }
+    }
+}
+
+In line 2 and 3, I replaced the for loop "q.size()" with a constant variable that isn't affected by the loop, size which is initiated as q.size() before the for loop takes place.
+
+Q4. What is the better fix to `sumStack` that corrects the bug?
+A4.
+To move the while statement to cover every element that will be popped. You can initiate total to 0, and only if there is a stack that isn't empty, will the .pop() function be called. This way the bug will not occur.
+
+
+Maze
+----
+Q5. After you have written your test cases, describe your testing strategy to confirm that your `validatePath` operates as intended. How confident are you that it works correctly in all cases?
+A5.
+In order to test if the validatePath operating correctly, I entered a few test cases that should come out as errors because they aren't valid paths.
+First I tested if the validatePath function would catch and error if the path was correctly going from the entry to the exit with valid moves, but looped around the same square twice. This was correctly caught and was able to catch the loop in the path.
+Then I tested if the function would operate if a move was out of the maze's boundaries. This error was also caught, making sure that no move left the formatted maze area.
+Then I tested if the function would recognize if a move wasn't made to a neighboring, north, east, south, or west index. If this were the case, such as moving in a non-valid diaganol or jumping multiple indexes at once, the validatePath funciton was able to catch this.
+I tested one more maze that had a valid path and the function came out with no error, which was the intended result.
+
+Q6. Most students are sold on the benefit of the fancy features provided by `Vector`, `Grid`, and `Set` but the ADT skeptics may question the value of `Stack` and `Queue` ADTs, seeing them as nothing more than a restricted `Vector`. Make your best argument to convince them of the benefits these ADTS have over `Vector`.
+A6.
+Vectors might have a lot of benefits such as being able to access each element with an index call, however, ADTs have several benefits. But accessing vectors also takes a lot of time and memory, while stacks and queues provide specialized behavior with clear advantages in terms of code clarity, efficiency, and suitability for specific tasks.
+This means when a vector is add to insert/remove an element in the front, compared to queues or stacks, it is much slower, and can reduce the overall efficiency of the code. A lack of modules to combine (splice or join) vectors makes other ADTs more favorable to use in certain scenarios.
+
+
+Search Engine
+-------------
+Q7. List the contents of the inverted index built from the `res/tiny.txt` database file.
+A7.
+10, 5lbmms, blue, bread, eat, fish, green, i, milk, one, red, two
+
+
+Beyond Algorithmic Analysis
+---------------------------
+Q8. In a short paragraph, describe a real or plausible scenario in which reworking an algorithm to improve its efficiency might benefit Earth's environment or humanity as a whole. Include your thoughts on how a software engineer working on this piece of code might identify such potential benefits and take them into consideration when designing the code.
+A8.
+An algorithm that is more efficient can literally mean the life or death for millions of people. Whether it be a nuclear missile deterrance system, a traffic safety device, or an algorithm that can calculate the safe dosage for medical treatments in emergencies. These latent human issues would be made better with a faster algorithm because the faster it is, the quicker it takes to process a national security threat, prevent a traffic accident, or resuscitate a dying person.
+A SWE should consider reducing the memory and the amount of iteration time when testing for how fast these algorithms can play a role. Especially when they understand the stakes of the project, reducing the memory and iteration time to conduct an algorithm could be the motivation needed to manipulate the code by even a few seconds.
+
+Q9. According to the contract that IBM struck with the state of Indiana, the criteria for optimization were improving efficiency of the overall welfare system and reducing fraud. Criteria for reducing wait times and wrongful denials were not included.  However, wrongfully denying benefits has a huge negative impact on the citizens who rely on the system.  If criteria like minimizing wrongful denials were not included in the contract, should engineers have included them in their optimization algorithm?  Why or why not?
+A9.
+In ethical and socially-conscious software engineering, engineers should consider more than just the criteria explicitly specified in a contract. Sure, wrongful denials weren't included in the contract, however, as an engineer that understands the context and the stakes at hand, it would be completely unethical to overlook this aspect. While the contract between IBM and the state of Indiana may have focused on efficiency and fraud reduction, it is crucial for engineers to consider the broader impact of their systems on users, especially when dealing with welfare systems that directly affect people's well-being.
+Because this might not be legally obliged, but being a good human should be something every engineer should strive toward.
+
+Q10. Imagine that after completing CS106B you are hired at IBM as an engineer working on this system. How might you have approached designing and setting the goals of this system?  How might you apply algorithmic analysis tools to build a system that achieved the desired goals? Could you do so in a way that avoids the severe negative impacts on users of the system that are outlined in the case study?
+A10.
+I would first ensure that the system wouldn't wrongful deny applicants, whiel also considering efficiency. This way I would take a comprehensive, user-centric, and ethical approach to building this service. This would build a welfare system that achieves efficiency goals while avoiding severe negative impacts. I would also have to be committed to achieving both of these goals and benchmarks: efficiency and accuracy.
